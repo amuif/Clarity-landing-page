@@ -69,7 +69,7 @@ const LandingNav = () => {
         {!isMobile && (
           <div className="flex gap-2 ">
             <Button className="rounded-[10px]" size="lg">
-              <Link href="/login">Get Started</Link>
+              <Link href="/coming-soon">Get Started</Link>
             </Button>
           </div>
         )}
@@ -103,7 +103,7 @@ export function DesktopNav() {
 
 import { useEffect, useRef, useState, type SetStateAction } from "react";
 import { Menu, X } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
 export function MobileNav({
@@ -115,6 +115,7 @@ export function MobileNav({
 }) {
   const popupRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const router = useRouter()
   console.info(pathname);
 
   useEffect(() => {
@@ -183,7 +184,10 @@ export function MobileNav({
 
               <Button
                 className="w-full bg-[#194e3e] text-white rounded-xl font-medium hover:bg-[#2d7a5f] transition-colors h-12 relative group overflow-hidden"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false)
+                  router.push("coming-soon")
+                }}
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Get Started
